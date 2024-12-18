@@ -467,11 +467,11 @@ public class PrijavaAnon extends javax.swing.JDialog {
 
     private void btnPotvrdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPotvrdaActionPerformed
 
-        if (!DataValidator.proveriJMBG(txtJMBG.getText())) {
+        if (!DataValidator.proveriJMBG(txtJMBG.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Unet JMBG nije ispravan.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!DataValidator.proveriBrojPasosa(txtBrojPasosa.getText())) {
+        if (!DataValidator.proveriBrojPasosa(txtBrojPasosa.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Unet broj pasoša nije ispravan.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -508,7 +508,7 @@ public class PrijavaAnon extends javax.swing.JDialog {
             ld.add(m.getElementAt(i));
         }
         String nacinPrevoza = (String) comboBoxPrevoznoSredstvo.getSelectedItem();
-        Stanovnik s = new Stanovnik(txtIme.getText(), txtPrezime.getText(), txtJMBG.getText(), txtBrojPasosa.getText());
+        Stanovnik s = new Stanovnik(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJMBG.getText().trim(), txtBrojPasosa.getText().trim());
         Prijava p = new Prijava(s, new java.sql.Date(datumUlazakEU.getDate().getTime()), new java.sql.Date(datumIzlazakEU.getDate().getTime()), ld, nacinPrevoza);
 
         Response r = parentFrame.posaljiZahtev("PRIJAVA_PUTOVANJE", p);
@@ -525,7 +525,7 @@ public class PrijavaAnon extends javax.swing.JDialog {
         if (checkBoxIzvestaj.isSelected()) {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Izaberite mesto čuvanja");
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Tekstualni Fajlovi", "txt");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Tekstualni Fajlovi (*.txt)", "txt");
             fileChooser.setSelectedFile(new File("izvestaj.txt"));
             fileChooser.setFileFilter(filter);
 
@@ -543,9 +543,9 @@ public class PrijavaAnon extends javax.swing.JDialog {
 
                 writer.write("*************** IZVESTAJ O PRIJAVI ***************\n");
                 writer.write("/////////////////////////////////////////////////////////////////////////////////\n");
-                writer.write("IME I PREZIME: " + s.getIme() + " " + s.getPrezime() + "\n");
-                writer.write("JMBG: " + s.getJMBG() + "\n");
-                writer.write("BROJ PASOSA: " + s.getBrojPasosa() + "\n");
+                writer.write("IME I PREZIME: " + s.getIme().trim() + " " + s.getPrezime().trim() + "\n");
+                writer.write("JMBG: " + s.getJMBG().trim() + "\n");
+                writer.write("BROJ PASOSA: " + s.getBrojPasosa().trim() + "\n");
                 writer.write("/////////////////////////////////////////////////////////////////////////////////\n");
                 writer.write("DATUM ULASKA U EU: " + p.getDatumUlaska() + "\n");
                 writer.write("DATUM IZLASKA IZ EU: " + p.getDatumIzlaska() + "\n");

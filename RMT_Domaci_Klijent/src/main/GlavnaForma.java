@@ -306,7 +306,7 @@ public class GlavnaForma extends javax.swing.JFrame {
         if (ulogovan) {
             JOptionPane.showMessageDialog(this, "Morate se prvo odjaviti kako biste izvršili novu prijavu.", "Info", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            Korisnik k = new Korisnik(txtKorisnickoIme.getText(), new String(txtSifra.getPassword()));
+            Korisnik k = new Korisnik(txtKorisnickoIme.getText().trim(), new String(txtSifra.getPassword()));
             Response r = posaljiZahtev("PRIJAVA", k);
             if (r == null) {
                 JOptionPane.showMessageDialog(null, "Nepoznata greška pri prenosu kroz mrežu.", "Greška", JOptionPane.ERROR_MESSAGE);

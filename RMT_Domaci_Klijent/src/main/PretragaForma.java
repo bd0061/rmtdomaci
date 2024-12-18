@@ -133,12 +133,12 @@ public class PretragaForma extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPretraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziActionPerformed
-        if (!DataValidator.proveriJMBG(txtJMBG.getText())) {
+        if (!DataValidator.proveriJMBG(txtJMBG.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Unet JMBG nije validan.", "Greška", JOptionPane.ERROR_MESSAGE);
-        } else if (!DataValidator.proveriBrojPasosa(txtBrojPasosa.getText())) {
+        } else if (!DataValidator.proveriBrojPasosa(txtBrojPasosa.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Unet broj pasoša nije validan.", "Greška", JOptionPane.ERROR_MESSAGE);
         } else {
-            List<Prijava> prijave = parentFrame.vratiPrijave(txtJMBG.getText(), txtBrojPasosa.getText());
+            List<Prijava> prijave = parentFrame.vratiPrijave(txtJMBG.getText().trim(), txtBrojPasosa.getText().trim());
             if (prijave != null) {
                 dispose();
                 JDialog d = new PregledPrijava(parentFrame, true, prijave, false);

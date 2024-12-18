@@ -183,24 +183,24 @@ public class Registracija extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrujActionPerformed
-        if (!DataValidator.proveriKorisnickoIme(txtKorisnickoIme.getText())) {
+        if (!DataValidator.proveriKorisnickoIme(txtKorisnickoIme.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Korisničko ime mora imati barem 6 karaktera.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         } else if (!DataValidator.proveriSifru(new String(txtSifra.getPassword()))) {
             JOptionPane.showMessageDialog(null, "Šifra mora sadržati barem 7 karaktera od kojih jedan mora biti specijalan karakter.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
-        } else if (!DataValidator.proveriEmail(txtEmail.getText())) {
+        } else if (!DataValidator.proveriEmail(txtEmail.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Unet mejl ne predstavlja validnu email adresu.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
-        } else if (!DataValidator.proveriJMBG(txtJMBG.getText())) {
+        } else if (!DataValidator.proveriJMBG(txtJMBG.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Unet JMBG ne predstavlja validni matični broj.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
-        } else if (!DataValidator.proveriBrojPasosa(txtBrojPasosa.getText())) {
+        } else if (!DataValidator.proveriBrojPasosa(txtBrojPasosa.getText().trim())) {
             JOptionPane.showMessageDialog(null, "Unet broj pasoša ne predstavlja validan broj pasoša.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Stanovnik s = new Stanovnik(txtIme.getText(), txtPrezime.getText(), txtJMBG.getText(), txtBrojPasosa.getText());
-        Korisnik k = new Korisnik(txtKorisnickoIme.getText(), new String(txtSifra.getPassword()), txtEmail.getText(), s);
+        Stanovnik s = new Stanovnik(txtIme.getText().trim(), txtPrezime.getText().trim(), txtJMBG.getText().trim(), txtBrojPasosa.getText().trim());
+        Korisnik k = new Korisnik(txtKorisnickoIme.getText().trim(), new String(txtSifra.getPassword()), txtEmail.getText().trim(), s);
 
         Response r = parentFrame.posaljiZahtev("REGISTRACIJA", k);
         if (r == null) {
